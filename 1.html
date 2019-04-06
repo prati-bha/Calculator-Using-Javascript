@@ -1,0 +1,189 @@
+<!--
+    2. Build a simple calculator with UI in HTML and some basic styling in CSS. 
+    The focus is on using event handlers to respond to the user input.
+-->
+
+<html>
+    <head>
+        <title>Simple calculator</title>
+    </head>
+    <style>
+        body
+        {
+            display:flex;
+            justify-content:center;
+            align-items: center;
+
+
+            background-color: dodgerblue;
+        }
+        .flexcol
+        {
+            
+            display:flex;
+            width: 350px;
+            flex-direction: column;
+            
+        }
+        textarea 
+        {
+            display: flex;
+            border-radius : 10px 10px 0 0;
+            resize:none;
+            text-align: right;
+            align-items: flex-end;
+            font-size: 50px;
+        }
+        .flexrow
+        {
+            display: flex;
+            flex-direction: row;
+            color: white; 
+           
+        }   
+        .flexdivs
+        {
+            display:flex;
+            background-color: black;
+			flex:0 1 12.5vw;
+			border : 1px solid white;
+            height : 58px;
+            width: 8px;
+            justify-content: center;
+            align-items : center;
+            font-style:italic;
+
+
+        }
+        .display
+        {
+            display: flex;
+            justify-content: flex-end;
+            color:grey;
+            border-radius:10px 10px 0 0;
+            background-color:white; 
+            width: 500px; 
+            height: 85px; 
+            font-size: 50px;
+            
+        }
+        [contentEditable=true]:empty:not(:focus):before{
+        content:attr(data-text)
+    }
+    </style>
+    <body>
+        <section class="flexcol">
+        <section class="flexrow"><div class="display" contentEditable=true data-text="0"  id="display";></div></section>
+        <section class="flexrow">
+            <div class="flexdivs" onclick="clear1()" id="c">C</div>
+            <div class="flexdivs" onclick="alert('I Dont Know the Use of this button, Sorry :('); clear1()" ">+/-</div>
+            <div class="flexdivs" onclick="value(this.id)" id="%">%</div>
+            <div class="flexdivs" onclick="value(this.id)" id="/" style="background-color: blueviolet;">/</div>
+        </section>
+        <section class="flexrow">
+                <div class="flexdivs" onclick="value(this.id)" id="7">7</div>
+                <div class="flexdivs" onclick="value(this.id)" id="8">8</div>
+                <div class="flexdivs" onclick="value(this.id)" id="9">9</div>
+                <div class="flexdivs" onclick="value(this.id)" style="background-color: blueviolet;" id="*">*</div>
+        </section>
+        <section class="flexrow">
+                <div class="flexdivs" onclick="value(this.id)" id="4">4</div>
+                <div class="flexdivs" onclick="value(this.id)" id="5">5</div>
+                <div class="flexdivs" onclick="value(this.id)" id="6">6</div>
+                <div class="flexdivs" onclick="value(this.id)" id="-"style="background-color: blueviolet;">-</div>
+        </section>
+        <section class="flexrow">
+                <div class="flexdivs" onclick="value(this.id)" id="1">1</div>
+                <div class="flexdivs" onclick="value(this.id)" id="2">2</div>
+                <div class="flexdivs" onclick="value(this.id)" id="3">3</div>
+                <div class="flexdivs" onclick="value(this.id)" id="+" style="background-color: blueviolet;">+</div>
+        </section>
+        <section class="flexrow">
+                <div class="flexdivs" onclick="value(this.id)" id="0" style=" border-radius : 0 0 0 10px;">0</div>
+                <div class="flexdivs" onclick="alert('No Use Of This Button.'); clear1();">.</div>
+                <div class="flexdivs" id="del" onclick="del()">del</div>
+                <div class="flexdivs" onclick="cal()" id="=" style="background-color:yellow; color:grey; border-radius : 0 0 10px 0;">=</div>
+        </section>
+      </section>
+    <script>
+        
+        function value(aa)
+        {
+
+                document.getElementById("display").innerHTML+=aa;
+
+        }
+        function clear1()
+        {
+            document.getElementById("display").innerHTML="";
+        }
+        function del()
+        {
+            var a=document.getElementById("display").innerHTML;
+            var b=a.slice(0,-1);
+            document.getElementById("display").innerHTML=b;
+            
+        }
+        function cal()
+        {
+            
+            var a=document.getElementById("display").innerHTML;
+            if(a.includes("%"))
+            {
+                var res=a.split("%");
+                var ress=modulo(res[0],res[1]);
+                document.getElementById("display").innerHTML=ress;
+            }
+            else if(a.includes("+"))
+            {
+                var res=a.split("+");
+                var ress=plus(parseInt(res[0]),parseInt(res[1]));
+                document.getElementById("display").innerHTML=ress;
+
+            }
+            else if(a.includes("-"))
+            {
+                var res=a.split("-");
+                var ress=minus(res[0],res[1]);
+                document.getElementById("display").innerHTML=ress;
+            }
+            else if(a.includes("*"))
+            {
+                var res=a.split("*");
+                var ress=multiply(res[0],res[1]);
+                document.getElementById("display").innerHTML=ress;
+            }
+            else if(a.include("/"))
+            {
+                var res=a.split("/");
+                var ress=division(res[0],res[1]);
+                document.getElementById("display").innerHTML=ress;
+            }
+             
+           
+        }
+        
+        function plus(a,b)
+        {
+            return a+b;
+        }
+        function minus(a,b)
+        {
+            return a-b;
+        }
+        function multiply(a,b)
+        {
+            return a*b;
+        }
+        function division(a,b)
+        {
+            return a/b;
+        }
+        function modulo(a,b)
+        {
+           
+            return a%b;
+        }
+    </script>
+</body>
+</html>
