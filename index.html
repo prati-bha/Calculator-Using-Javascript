@@ -6,6 +6,8 @@
 <html>
     <head>
         <title>Simple calculator</title>
+		<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <style>
         body
@@ -13,10 +15,28 @@
             display:flex;
             justify-content:center;
             align-items: center;
-
-
-            background-color: dodgerblue;
+			font-family: 'Anton', sans-serif;
+			-webkit-animation: background 15s cubic-bezier(1,0,0,1) infinite;
+			animation: background 15s cubic-bezier(1,0,0,1) infinite;  
+            
         }
+		@-webkit-keyframes background {
+		  0% { background-color: #5ebf4b;}
+		  25% { background-color: #34cac3;}  
+		  50% { background-color: #fca011;}
+		  75% { background-color: #fd374f;}
+		  100% { background-color: #874cbd;}
+		  
+		}
+
+		@keyframes background {
+		  0% { background-color: #5ebf4b;}
+		  25% { background-color: #34cac3;}  
+		  50% { background-color: #fca011;}
+		  75% { background-color: #fd374f;}
+		  100% { background-color: #874cbd;}
+			
+		}
         .flexcol
         {
             
@@ -45,15 +65,13 @@
         {
             display:flex;
             background-color: black;
-			flex:0 1 12.5vw;
+			flex:0 1 25.5vw;
 			border : 1px solid white;
             height : 58px;
             width: 8px;
             justify-content: center;
             align-items : center;
             font-style:italic;
-
-
         }
         .display
         {
@@ -65,15 +83,18 @@
             width: 500px; 
             height: 85px; 
             font-size: 50px;
-            
+            padding-right:10px;
         }
         [contentEditable=true]:empty:not(:focus):before{
         content:attr(data-text)
     }
     </style>
     <body>
+		
         <section class="flexcol">
-        <section class="flexrow"><div class="display" contentEditable=true data-text="0"  id="display";></div></section>
+        <center><h1 style="font-size:2em; color:white; font-family:verdana;">Online Simple Calculator</h1></center>
+		<br>
+		<section class="flexrow"><div class="display" contentEditable=true data-text="0"  id="display";></div></section>
         <section class="flexrow">
             <div class="flexdivs" onclick="clear1()" id="c">C</div>
             <div class="flexdivs" onclick="alert('I Dont Know the Use of this button, Sorry :('); clear1()" ">+/-</div>
